@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>レイヤーテスト</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #eee;
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  .stage img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .illust { z-index: 1; }  /* yutugu.jpg */
+  .footer { z-index: 2; pointer-events: none; }  /* クリック透過 */
+  .haikei { z-index: 3; pointer-events: auto; }  /* 背景ヘッダー */
+  .moji { z-index: 4; pointer-events: none; }   /* 文字透過 */
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <!-- ▼ マップ対象のイラスト -->
+  <img src="yutugu.jpg" alt="" class="illust" usemap="#MapFace">
+
+  <!-- ▼ フッター -->
+  <img src="webnamihut.png" alt="" class="footer">
+
+  <!-- ▼ 背景ヘッダー -->
+  <img src="haikeinomi.png" alt="" class="haikei" usemap="#MapHeader">
+
+  <!-- ▼ 文字は透過で最前面 -->
+  <img src="mojinomi.png" alt="" usemap="#Map" class="moji">
+  <map name="Map">
+</map>
+</div>
+
+<!-- ▼ yutugu.jpg用マップ -->
+<map name="MapFace">
+  <area shape="circle" coords="325,681,152" href="kaen.html">
+  <area shape="circle" coords="773,691,138" href="yutugu.html">
+</map>
+
+<!-- ▼ 背景ヘッダー用マップ -->
+<map name="MapHeader">
+<area shape="rect" coords="37,29,200,112" href="index.html">
+  <area shape="rect" coords="610,29,720,112" href="food.html">
+  <area shape="rect" coords="770,29,960,112" href="chara.html">
+<area shape="rect" coords="990,29,1120,112" href="goods.html">
+</map>
+
+</body>
+</html>
