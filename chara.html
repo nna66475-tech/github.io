@@ -13,7 +13,7 @@ body {
 .stage {
   position: relative;
   width: 100%;
-  max-width: 1200px; /* 好みに応じて */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -27,38 +27,43 @@ body {
 }
 
 /* レイヤー順 */
-.illust { z-index: 1; }  /* マップ対象の画像最前面 */
+.illust { z-index: 1; }      /* マップ対象の画像最前面 */
 .haikei  { z-index: 2; pointer-events: none; } /* クリック透過 */
 .footer  { z-index: 3; pointer-events: none; } /* クリック透過 */
 .moji    { z-index: 4; pointer-events: none; } /* 文字透過 */
+.moji1   { z-index: 4; pointer-events: none; }
 
 /* レスポンシブ */
 @media (max-width: 768px) {
-  .stage img { width: 100%; }
+  .stage img {
+    width: 100%;
+    height: auto;
+  }
 }
-.moji1 {z-index: 4; pointer-events: none; }
 </style>
 </head>
 <body>
 
 <div class="stage">
-  <!-- ▼ マップ対象の画像 -->
+  <!-- マップ対象画像 -->
   <img src="face.jpg" alt="" class="illust" usemap="#MapAll">
 
-  <!-- ▼ 上に重ねるけどクリック透過 -->
+  <!-- 上に重ねるけどクリック透過 -->
   <img src="haikeinomi.png" alt="" class="haikei">
-<img src="webnamihut.png" alt="" class="footer"><img src="mojinomi.png" alt="" class="moji1"></div>
+  <img src="webnamihut.png" alt="" class="footer">
+  <img src="mojinomi.png" alt="" class="moji1">
+</div>
 
-<!-- ▼ 統合マップ -->
+<!-- 統合マップ -->
 <map name="MapAll">
   <!-- face.jpgの円形エリア -->
   <area shape="circle" coords="330,720,180" href="kaen.html">
   <area shape="circle" coords="860,720,180" href="yutugu.html">
 
   <!-- ヘッダー部分の長方形エリア -->
- <area shape="rect" coords="37,29,200,112" href="index.html">
+  <area shape="rect" coords="37,29,200,112" href="index.html">
   <area shape="rect" coords="610,29,720,112" href="food.html">
-<area shape="rect" coords="990,29,1120,112" href="goods.html">
+  <area shape="rect" coords="990,29,1120,112" href="goods.html">
 </map>
 
 </body>
