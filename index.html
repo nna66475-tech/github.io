@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>レイヤーテスト</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body {
     margin: 0;
@@ -11,7 +10,7 @@
     background: #eee;
   }
 
-  /* ▼ 全体ステージ */
+  /* ▼ 全体ステージ（固定幅1200pxまで、比率は自動調整） */
   .stage {
     position: relative;
     width: 100%;
@@ -19,7 +18,7 @@
     margin: 0 auto;
   }
 
-  /* ▼ 画像 */
+  /* ▼ すべての画像 */
   .stage img {
     position: absolute;
     top: 0;
@@ -30,40 +29,60 @@
   }
 
   /* レイヤー順 */
-  .illust { z-index: 1; }      /* メイン画像 */
-  .footer { z-index: 2; pointer-events: none; }  
-  .haikei { z-index: 3; pointer-events: auto; }  
-  .moji   { z-index: 4; pointer-events: none; }  
-  .logo   { z-index: 5; pointer-events: none; top: 28.5%; left: 50%; transform: translateX(-50%); width: 60%; position: absolute; opacity: 0; animation: fadeIn 1.5s ease-in-out 2s forwards; }
+  .illust { z-index: 1; }   /* メインイラスト */
+  .footer { z-index: 2; pointer-events: none; } /* クリック透過 */
+  .haikei { z-index: 3; pointer-events: auto; } /* 背景ヘッダー */
+  .moji   { z-index: 4; pointer-events: none; } /* 文字透過 */
+
+  /* ロゴはイラスト半分より下 */
+  .logo {
+    position: absolute;
+    top: 28.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    opacity: 0;
+    z-index: 10;
+    animation: fadeIn 1.5s ease-in-out 2s forwards;
+  }
 
   @keyframes fadeIn {
     from { opacity: 0; }
-    to { opacity: 1; }
+    to   { opacity: 1; }
   }
 </style>
 </head>
+
 <body>
 
 <div class="stage">
-  <img src="topirust.PNG" alt="" class="illust" usemap="#Map" id="main-map">
+  <!-- ▼ メインイラスト -->
+  <img src="topirust.PNG" alt="" class="illust" usemap="#Map">
+
+  <!-- ▼ フッター -->
   <img src="webnamihut.png" alt="" class="footer">
+
+  <!-- ▼ 背景ヘッダー -->
   <img src="haikeinomi.png" alt="" class="haikei">
+
+  <!-- ▼ 文字は最前面で透過 -->
   <img src="mojinomi.png" alt="" class="moji">
+
+  <!-- ▼ ロゴ -->
   <img src="logo.png" alt="" class="logo">
 </div>
 
+<!-- ▼ イメージマップ -->
 <map name="Map">
   <area shape="rect" coords="610,29,720,112" href="food.html">
   <area shape="rect" coords="770,29,960,112" href="chara.html">
   <area shape="rect" coords="990,29,1120,112" href="goods.html">
 </map>
 
-<!-- ▼ 画像マップリサイズ用JS -->
+<!-- ▼ スマホ対応：image-map-resizer -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
 <script>
-  window.addEventListener('load', function() {
-    imageMapResize(document.getElementById('main-map'));
-  });
+  imageMapResize();
 </script>
 
 </body>
