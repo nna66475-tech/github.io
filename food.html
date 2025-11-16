@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>フード</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #eee;
+  }
+
+  /* ▼ ステージ（絶対配置） */
+  .stage {
+    position: relative; 
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  /* ▼ ステージ内画像 */
+  .stage img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .illust { z-index: 1; }  /* イラスト */
+  .footer { z-index: 2; }  /* フッター */
+  .haikei { z-index: 3; }  /* 背景 */
+  .moji   { z-index: 4; pointer-events: none; }  /* 文字透過 */
+</style>
+</head>
+
+<body>
+
+<div class="stage">
+  <img src="foodmenu.jpg" alt="" class="illust">
+  <img src="webnamihut.png" alt="" class="footer">
+  <img src="haikeinomi.png" alt="" class="haikei" usemap="#Map">
+  <img src="mojinomi.png" alt="" class="moji">
+</div>
+
+<map name="Map">
+ <area shape="rect" coords="37,29,200,112" href="index.html">
+  <area shape="rect" coords="770,29,960,112" href="chara.html">
+<area shape="rect" coords="990,29,1120,112" href="goods.html">
+</map>
+
+</body>
+</html>
