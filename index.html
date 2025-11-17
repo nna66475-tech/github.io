@@ -10,15 +10,20 @@
     background: #eee;
   }
 
+  /* ▼ 全体ステージ（実画像の高さ 3508 に合わせる） */
   .stage {
     position: relative;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    height: auto;
+    height: 3508px;
   }
 
-  .stage img {
+  /* ▼ ロゴ以外の画像 */
+  .stage img.illust,
+  .stage img.footer,
+  .stage img.haikei,
+  .stage img.moji {
     position: absolute;
     top: 0;
     left: 0;
@@ -27,44 +32,47 @@
     display: block;
   }
 
-  /* レイヤー順 */
-  .illust { z-index: 1; }  /* kaen.jpg */
-  .footer { z-index: 2; pointer-events: none; }  /* クリック透過 */
-  .haikei { z-index: 3; pointer-events: auto; }  /* 背景ヘッダークリック可能 */
-  .moji { z-index: 4; pointer-events: none; }   /* 文字透過 */
+  .illust { z-index: 1; }
+  .footer { z-index: 2; }
+  .haikei { z-index: 3; }
+  .moji   { z-index: 4; pointer-events: none; }
+
+  /* ▼ ロゴ（イラストの半分より下に固定） */
+  .logo {
+    position: absolute;
+    top: 28.5%;              /* ← イラストの半分より下に配置（超重要） */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;               /* 小さめ */
+    opacity: 0;
+    z-index: 10;
+    animation: fadeIn 1.5s ease-in-out 2s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
 </style>
 </head>
+
 <body>
 
-<div class="stage">
-  <!-- ▼ Kaen.jpg にマップを付与 -->
-  <img src="kaen.jpg" alt="" class="illust" usemap="#MapFace">
+  <div class="stage">
+    <img src="topirust.PNG" alt="" class="illust">
+    <img src="webnamihut.png" alt="" class="footer">
+    <img src="haikeinomi.png" alt="" class="haikei" usemap="#Map">
+    <img src="mojinomi.png" alt="" class="moji">
 
-  <!-- ▼ フッター -->
-  <img src="webnamihut.png" alt="" class="footer">
+    <!-- ▼ イラストの半分より下に置くロゴ -->
+    <img src="logo.png" alt="" class="logo">
+  </div>
 
-  <!-- ▼ 背景ヘッダー -->
-  <img src="haikeinomi.png" alt="" class="haikei" usemap="#MapHeader">
-
-  <!-- ▼ 文字は最前面で透過 -->
-  <img src="mojinomi.png" alt="" usemap="#Map" class="moji">
   <map name="Map">
-</map>
-</div>
-
-<!-- ▼ Kaen.jpg 用マップ -->
-<map name="MapFace">
-  <area shape="circle" coords="325,681,152" href="kaen.html">
-  <area shape="circle" coords="773,691,138" href="yutugu.html">
-</map>
-
-<!-- ▼ 背景ヘッダー用マップ -->
-<map name="MapHeader">
- <area shape="rect" coords="37,29,200,112" href="index.html">
   <area shape="rect" coords="610,29,720,112" href="food.html">
   <area shape="rect" coords="770,29,960,112" href="chara.html">
 <area shape="rect" coords="990,29,1120,112" href="goods.html">
-</map>
+  </map>
 
 </body>
 </html>
